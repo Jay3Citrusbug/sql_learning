@@ -1,0 +1,118 @@
+-- query - 1
+-- select c.name,core_language.title,core_language.id from 
+-- core_playlist c INNER JOIN core_playlist_song on c.id=core_playlist_song.playlist_id
+-- Inner join core_song ON core_playlist_song.song_id = core_song.id
+-- Inner join core_language ON core_language.id = core_song.language_id
+
+
+-- query -2
+-- SELECT core_playlist.name as playlist, core_genre.title as genre , Core_song_artist.artist_id
+-- FROM core_playlist
+-- INNER JOIN core_playlist_song ON core_playlist.id = core_playlist_song.playlist_id
+-- INNER JOIN Core_song_artist ON core_playlist_song.song_id = Core_song_artist.song_id
+-- INNER JOIN core_usergenre ON core_playlist.user_id = core_usergenre.user_id 
+-- INNER JOIN core_genre ON core_genre.id = core_usergenre.genre_id 
+
+
+
+-- query 3
+-- select core_artist.name,core_song.name,core_song.genre_id from core_artist 
+-- inner join core_song_artist on core_artist.id=core_song_artist.artist_id
+-- inner join core_song on core_song.id=core_song_artist.song_id
+
+
+-- query 4
+
+-- select core_playlist.id,core_playlist.name,core_song.name,core_song_artist.artist_id from core_playlist
+-- inner join core_playlist_song on core_playlist_song.playlist_id=core_playlist.id
+-- inner join core_song on core_song.id=core_playlist_song.song_id
+-- inner join core_song_artist on core_song.id=core_song_artist.song_id
+-- inner join core_artist on core_artist.id=core_song_artist.artist_id
+
+
+-- --- query 5
+-- select core_artist.name,count (core_song.id)
+-- from core_song_artist,core_song,core_artist 
+-- where core_song_artist.artist_id = core_artist.id and core_song_artist.song_id = core_song.id 
+-- group by core_artist.name
+
+
+-- query 6 
+-- select core_song.name, core_song_artist.artist_id,core_artist.name,core_playlist_song.playlist_id from core_playlist_song
+-- inner join core_song on core_song.id=core_playlist_song.song_id
+-- inner join core_song_artist on core_song_artist.song_id=core_song.id
+-- inner join core_artist on core_song_artist.artist_id=core_artist.id
+
+		-- another mehod query 6
+		-- select core_song.name,core_artist.id,core_artist.name,core_playlist_song.playlist_id from core_playlist_song
+		-- inner join core_song on core_song.id=core_playlist_song.song_id
+		-- inner join core_song_artist on core_song_artist.song_id=core_song.id
+		-- inner join core_artist on core_song_artist.artist_id=core_artist.id
+
+--query 7 
+
+-- select core_playlistsongorder.order,core_artist.image, core_playlist.id from core_playlistsongorder
+-- inner join core_playlist on core_playlistsongorder.playlist_id = core_playlist.id inner join core_song_artist 
+-- on core_song_artist.song_id=core_playlistsongorder.song_id inner join core_artist on core_artist.id=core_song_artist.artist_id
+
+-- query 8 
+
+-- INSERT INTO core_playlist (id,name,user_id,is_featured,created_at)
+-- values
+-- (1005,'jay',400,true,current_timestamp),
+-- (2005,'sagar',500,false,current_timestamp),
+-- (3005,'manthan',501,true,current_timestamp),
+-- (4005,'kunal',607,false,current_timestamp);
+
+-- select * from core_playlist order by id asc;
+
+
+-- query 9
+
+-- CREATE VIEW ALLDATA1 AS
+-- SELECT 
+-- 	CORE_ARTIST.ID,
+-- 	CORE_PLAYLIST_SONG.PLAYLIST_ID,
+-- 	CORE_SONG.NAME,
+-- 	CORE_SONG.IMAGE
+
+-- FROM CORE_PLAYLIST_SONG
+-- INNER JOIN CORE_SONG ON CORE_SONG.ID = CORE_PLAYLIST_SONG.SONG_ID
+-- INNER JOIN CORE_SONG_ARTIST ON CORE_SONG_ARTIST.SONG_ID = CORE_SONG.ID
+-- INNER JOIN CORE_ARTIST ON CORE_SONG_ARTIST.ARTIST_ID = CORE_ARTIST.ID
+
+
+-- select * from alldata1
+
+
+--query 10
+
+-- select core_playlist.name,count(core_song_artist.artist_id) AS artist_id from core_playlist
+-- inner join core_playlist_song on core_playlist_song.playlist_id=core_playlist.id
+-- inner join core_song on core_song.id=core_playlist_song.song_id
+-- inner join core_song_artist on core_song.id=core_song_artist.song_id
+-- inner join core_artist on core_artist.id=core_song_artist.artist_id
+-- group by core_playlist.name having count(distinct core_song_artist.artist_id)=1
+
+
+
+--query 11
+
+-- select core_playlist.name,count(core_song.genre_id) AS genre_id from core_playlist
+-- inner join core_playlist_song on core_playlist_song.playlist_id=core_playlist.id
+-- inner join core_song on core_song.id=core_playlist_song.song_id
+-- inner join core_genre on core_genre.id=core_song.genre_id 
+-- group by core_playlist.name having count(distinct core_song.genre_id)=1
+
+
+--query 12
+
+-- select count(core_songlike.id),core_song.name,core_playlist_song.playlist_id from core_songlike
+-- inner join core_playlist_song on core_songlike.song_id=core_playlist_song.song_id
+-- inner join core_song on core_song.id=core_songlike.song_id
+-- group by core_playlist_song.playlist_id,core_song.name
+
+
+
+
+
